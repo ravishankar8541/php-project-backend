@@ -1,0 +1,12 @@
+# Apache/LiteSpeed has no router script like `php -S`, so requests for
+# /api/todos would 404 as a missing file. Send everything that is not a real
+# file to the front controller, which does the routing.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . index.php [QSA,L]
+</IfModule>
+
+DirectoryIndex index.php

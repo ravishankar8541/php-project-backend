@@ -1,0 +1,5 @@
+data/
+ext/
+config/mongodb.local.php
+.env
+*.log
